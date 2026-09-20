@@ -22,7 +22,7 @@ def list_payments(db: Session):
 
 
 def create_payment(db: Session, data: PaymentCreate):
-    return payment_repository.create(db, data.model_dump())
+    return payment_repository.create(db, data.model_dump(exclude_none=True))
 
 
 def update_payment(db: Session, payment_id: int, data: PaymentUpdate):

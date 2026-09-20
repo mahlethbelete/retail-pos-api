@@ -22,7 +22,7 @@ def list_sales(db: Session):
 
 
 def create_sale(db: Session, data: SaleCreate):
-    return sale_repository.create(db, data.model_dump())
+    return sale_repository.create(db, data.model_dump(exclude_none=True))
 
 
 def update_sale(db: Session, sale_id: int, data: SaleUpdate):
