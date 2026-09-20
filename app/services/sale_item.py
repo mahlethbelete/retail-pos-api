@@ -22,14 +22,24 @@ def list_sale_items(db: Session):
 
 
 def create_sale_item(db: Session, data: SaleItemCreate):
-    return sale_item_repository.create(db, data.model_dump())
+    payload = data.model_dump()
+
+    if payload.get("line_total") is None:
+        payload["line_total"] = payload["unit_price"] * payload["quantity"]
+
+    return sale_item_repository.create(db, payload)
 
 
 def update_sale_item(db: Session, sale_item_id: int, data: SaleItemUpdate):
     sale_item = get_sale_item(db, sale_item_id)
-    return sale_item_repository.update(
-        db, sale_item, data.model_dump(exclude_unset=True)
-    )
+    payload = data.model_dump(exclude_unset=True, exclude_none=True)
+
+    if "line_total" not in payload and ("unit_price" in payload or "quantity" in payload):
+        unit_price = payload.get("unit_price", sale_item.unit_price)
+        quantity = payload.get("quantity", sale_item.quantity)
+        payload["line_total"] = unit_price * quantity
+
+    return sale_item_repository.update(db, sale_item, payload)
 
 
 def delete_sale_item(db: Session, sale_item_id: int):

@@ -12,7 +12,7 @@ class CategoryCreate(CategoryBase):
 
 class CategoryUpdate(BaseModel):
     name: str | None = None
-    description: str
+    description: str | None = None
 
 
 class CategoryRead(CategoryBase):
