@@ -3,7 +3,7 @@
 A point of sale backend for a small Kenyan retail shop, built with FastAPI,
 SQLAlchemy and PostgreSQL.
 
-![Tests](https://github.com/mahletheblete/retail-pos-api/actions/workflows/tests.yml/badge.svg)
+![Tests](https://github.com/mahlethbelete/retail-pos-api/actions/workflows/tests.yml/badge.svg)
 
 ## Features
 
