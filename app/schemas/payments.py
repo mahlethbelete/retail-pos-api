@@ -8,7 +8,7 @@ class PaymentBase(BaseModel):
     sale_id: int
     payment_method: str
     amount: Decimal
-    payment_date: datetime
+    payment_date: datetime | None = None
 
 
 class PaymentCreate(PaymentBase):

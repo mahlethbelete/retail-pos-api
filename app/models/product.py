@@ -8,10 +8,10 @@ class Product(Base):
     __tablename__ = "products"
 
     product_id = Column(Integer, primary_key=True, index=True)
-    category_id = Column(Integer, ForeignKey("categories.category_id"), nullable=False)
+    category_id = Column(Integer, ForeignKey("categories.category_id"), nullable=True)
     supplier_id = Column(Integer, ForeignKey("suppliers.supplier_id"), nullable=True)
     name = Column(String(100), nullable=False)
-    description = Column(String(255), nullable=True)
+    description = Column(Text, nullable=True)
     unit_price = Column(Numeric(10, 2), nullable=False)
     cost_price = Column(Numeric(10, 2), nullable=True)
     quantity_in_stock = Column(Integer, nullable=False, default=0)
